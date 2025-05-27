@@ -1,0 +1,110 @@
+# Network Scanner Pro
+
+Network Scanner Pro is an advanced network scanning tool built with Python and Nmap. It provides comprehensive network discovery, port scanning, and vulnerability assessment capabilities with a user-friendly interface.
+
+## Features
+
+- **Multiple Scan Types**:
+  - Discovery scan (host detection only)
+  - Quick scan (common ports)
+  - Full scan (version detection + OS fingerprinting)
+  - Vulnerability scan (basic vulnerability assessment)
+
+- **Comprehensive Reporting**:
+  - IP and MAC address detection
+  - Vendor identification
+  - Hostname resolution
+  - Open port detection with service versions
+  - Multiple output formats (table, JSON, CSV, text)
+
+- **Additional Features**:
+  - Scan history tracking
+  - Results export to files
+  - Verbose mode for detailed information
+  - Responsive table-based display
+
+## Requirements
+
+- Python 3.x
+- python-nmap
+- prettytable
+
+Install requirements with:
+```bash
+pip install python-nmap prettytable
+Usage
+Basic discovery scan:
+
+bash
+python network_scanner_pro.py 192.168.1.0/24
+Quick scan with port range:
+
+bash
+python network_scanner_pro.py 192.168.1.0/24 -t quick -p 1-1000
+Full scan with JSON output:
+
+bash
+python network_scanner_pro.py 192.168.1.0/24 -t full -o json
+Vulnerability scan and save results:
+
+bash
+python network_scanner_pro.py 192.168.1.0/24 -t vulnerability -s
+View scan history:
+
+bash
+python network_scanner_pro.py --history
+Command Line Options
+usage: network_scanner_pro.py [-h] [-t {discovery,quick,full,vulnerability}] [-p PORTS]
+                             [-o {table,json,csv,text}] [-s] [-v] [--history]
+                             [network_range]
+
+Network Scanner Pro - Advanced network scanning tool
+
+positional arguments:
+  network_range         Network range to scan (e.g., 192.168.1.0/24)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t {discovery,quick,full,vulnerability}, --type {discovery,quick,full,vulnerability}
+                        Type of scan to perform
+  -p PORTS, --ports PORTS
+                        Port range to scan (for quick/full/vulnerability scans)
+  -o {table,json,csv,text}, --output {table,json,csv,text}
+                        Output format
+  -s, --save            Save scan results to a file
+  -v, --verbose         Show verbose output
+  --history             Show scan history
+Output Samples
+Table Output:
+
++-------------+-------------------+------------------+-------------+---------+
+| IP Address  |     MAC Address   |      Vendor      |  Hostname   | Status  |
++-------------+-------------------+------------------+-------------+---------+
+| 192.168.1.1 | 00:11:22:33:44:55 | TP-Link          | router.local| up      |
+| 192.168.1.2 | AA:BB:CC:DD:EE:FF | Samsung Electronics| phone      | up      |
++-------------+-------------------+------------------+-------------+---------+
+JSON Output:
+
+json
+[
+  {
+    "ip_address": "192.168.1.1",
+    "mac_address": "00:11:22:33:44:55",
+    "vendor": "TP-Link",
+    "hostname": "router.local",
+    "status": "up",
+    "open_ports": [
+      {
+        "port": 80,
+        "state": "open",
+        "service": "http",
+        "product": "TP-Link router admin interface",
+        "version": "1.0"
+      }
+    ]
+  }
+]
+License
+This project is open-source and available under the MIT License.
+
+
